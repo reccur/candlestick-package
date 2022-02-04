@@ -58,6 +58,65 @@
             $this->setPattern();
         }
 
+        /* Getters */
+
+        public function date(){
+            return $this->date;
+        }
+
+        public function o(){
+            return $this->o;
+        }
+
+        public function h(){
+            return $this->h;
+        }
+
+        public function l(){
+            return $this->l;
+        }
+
+        public function c(){
+            return $this->c;
+        }
+
+        public function volume(){
+            return $this->volume;
+        }
+
+        public function color(){
+            return $this->color;
+        }
+
+        public function candle(){
+            return $this->candle;
+        }
+
+        public function upper_wick(){
+            return $this->upper_wick;
+        }
+
+        public function body(){
+            return $this->body;
+        }
+
+        public function lower_wick(){
+            return $this->lower_wick;
+        }
+
+        public function wicks(){
+            return $this->wicks;
+        }
+
+        public function pattern(){
+            return $this->PATTERN;
+        }
+
+        /* Getters */
+
+        
+
+        // setter for color
         public function setColor(){
             if($this->c == $this->o){
                 $this->color = "TRUE_DOJI";
@@ -93,8 +152,6 @@
                 echo "lower_wick : {$this->lower_wick}<br>";
                 echo "<br>";
             }
-
-           
         }
 
         public function setPattern(){
@@ -183,7 +240,10 @@
             $this->candle1 = $candle1;
             $this->candle2 = $candle2;
             $this->setPattern();
+        }
 
+        public function pattern(){
+            return $this->PATTERN;
         }
 
         public function setPattern(){
@@ -303,12 +363,14 @@
             $this->candle2 = $candle2;
             $this->candle3 = $candle3;
             $this->setPattern();
+        }
 
+        public function pattern(){
+            return $this->PATTERN;
         }
 
         public function setPattern(){
-
-
+            
             // MORNING_STAR
             if(
                 ($this->candle1->color=="RED") &&
