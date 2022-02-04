@@ -78,7 +78,7 @@ $pattern = Candlestick::single([
 // Output: HAMMER_OR_HANGING_MAN
 ```
 
-Getters
+#### Getters
 
 | Getter | Method |
 | ------ | ------ |
