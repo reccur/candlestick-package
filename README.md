@@ -24,12 +24,15 @@ Candlestick is made available under the MIT License (MIT). Please see [License F
 ```bash
 $candle = Candlestick::single([
     'date'   => '2022-01-02',
-    'o'      => 1501.03,
-    'h'      => 1511.12,
-    'l'      => 1423.31,
-    'c'      => 1454.21,
+    'o'      => 300.00,
+    'h'      => 300.00,
+    'l'      => 292.00,
+    'c'      => 292.10,
     'volume' => 15623,
 ]);
+$candle->color();
+
+$candle->pattern();
 ```
 
 ```bash
