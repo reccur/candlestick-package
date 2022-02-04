@@ -6,6 +6,8 @@
 Candlestick is a laravel package that helps to analyze various patterns, structures and trends in candlesticks
 
 - Use it with Facade or as a library
+- Change various thresholds and multipliers in config/candlestick.php file
+- Includes patterns for single candle, dual candles and triple candles
 
 ## Installing Candlestick
 
