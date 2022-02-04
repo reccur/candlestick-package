@@ -30,9 +30,12 @@ $candle = Candlestick::single([
     'c'      => 292.10,
     'volume' => 15623,
 ]);
+
 $candle->color();
+// output : RED
 
 $candle->pattern();
+// output : OPENING_MARUBOZU
 ```
 
 ```bash
