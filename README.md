@@ -21,6 +21,7 @@ Candlestick is made available under the MIT License (MIT). Please see [License F
 
 ## Usage
 
+### Single Candlestick
 ```bash
 $candle = Candlestick::single([
     'date'   => '2022-01-02',
@@ -48,8 +49,28 @@ $pattern = Candlestick::single([
     'c'      => 1777.00,
     'volume' => 120,
 ])->pattern();
+
 // Output: HAMMER_OR_HANGING_MAN
 ```
+
+Getters
+
+| Getter | Method |
+| ------ | ------ |
+| Date | ->date() |
+| Open | ->o() |
+| High | ->h() |
+| Low | ->l() |
+| Close | ->c() |
+| Volume | ->volume() |
+| Color | ->color() |
+| Upper Wick (%) | ->upper_wick() |
+| Body (%) | ->body() |
+| Lower Wick (%) | ->lower_wick() |
+| Wicks (%) | ->wicks() |
+| Pattern | ->pattern() |
+
+### Dual Candlesticks
 
 ```bash
 Candlestick::dual($candle, $candle2);
