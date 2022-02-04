@@ -15,9 +15,6 @@ The recommended way to install Candlestick is through
 ```bash
 composer require reccur/candlestick
 ```
-## License
-
-Candlestick is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 ## Usage
 
@@ -103,3 +100,22 @@ Candlestick::dual($candle1, $candle2, $candle3)->pattern();
 
 // Output: THREE_BLACK_CROWS
 ```
+## Config
+Use laravel vendor publish to generate config files under config/candlestick.php
+```bash
+php artisan vendor:publish
+```
+You may change the following settings
+```bash
+'MARUBOZU_WICKS_THRESHOLD' => 5,
+'HAMMER_SHORTER_WICK_THRESHOLD' => 5,
+'HAMMER_LONGER_WICK_MULTIPLIER' => 2.5,
+'DOJI_SHORTER_WICK_THRESHOLD' => 2,
+'DOJI_WICK_MULTIPLIER' => 15,
+'SPINNING_TOP_WICKS_MULTIPLIER' => 5,
+'SPINNING_TOP_WICKS_DIFFERENCE_THRESHOLD' => 5,
+```
+
+## License
+
+Candlestick is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
