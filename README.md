@@ -1,7 +1,7 @@
 # Candlestick
 
-[![Stars](https://img.shields.io/github/stars/reccur/candlestick-package)]
-[![Forks](https://img.shields.io/github/forks/reccur/candlestick-package)]
+![Stars](https://img.shields.io/github/stars/reccur/candlestick-package)
+![Forks](https://img.shields.io/github/forks/reccur/candlestick-package)
 
 Candlestick is a laravel package that helps to analyze various patterns, structures and trends in candlesticks
 
