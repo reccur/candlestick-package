@@ -18,3 +18,20 @@ composer require reccur/candlestick
 ## License
 
 Candlestick is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+## Usage
+
+```bash
+$candle = Candlestick::single([
+    'date'   => '2022-01-02',
+    'o'      => 1501.03,
+    'h'      => 1511.12,
+    'l'      => 1423.31,
+    'c'      => 1454.21,
+    'volume' => 15623,
+]);
+```
+
+```bash
+Candlestick::dual($candle, $candle2);
+```
