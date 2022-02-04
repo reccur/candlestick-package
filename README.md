@@ -18,5 +18,3 @@ composer require reccur/candlestick
 ## License
 
 Candlestick is made available under the MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-## For Enterprise
