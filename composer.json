@@ -1,0 +1,20 @@
+{
+    "name": "reccur/candlestick",
+    "description": "Analyzes different trends and patterns in a candlestick chart",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nishan Hitang",
+            "email": "nishanhitang@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Reccur\\Candlestick\\": "src/"
+        }
+        
+    }
+}
