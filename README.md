@@ -33,7 +33,7 @@ Copy the package config to your local config with the publish command:
 ```shell
 php artisan vendor:publish --provider="Reccur\Candlestick\CandlestickServiceProvider"
 ```
-You may change the following settings
+You may change the following settings in the published config/candlestick.php file
 ```php
 'MARUBOZU_WICKS_THRESHOLD' => 5,
 'HAMMER_SHORTER_WICK_THRESHOLD' => 5,
