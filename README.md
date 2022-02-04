@@ -32,10 +32,23 @@ $candle = Candlestick::single([
 ]);
 
 $candle->color();
-// output : RED
+// Output: RED
 
 $candle->pattern();
-// output : OPENING_MARUBOZU
+// Output: OPENING_MARUBOZU
+```
+Or use laravel Method Chaining
+
+```bash
+$pattern = Candlestick::single([
+    'date'   => '2022-01-03',
+    'o'      => 1784.00,
+    'h'      => 1785.00,
+    'l'      => 1750.00,
+    'c'      => 1777.00,
+    'volume' => 120,
+])->pattern();
+// Output: HAMMER_OR_HANGING_MAN
 ```
 
 ```bash
