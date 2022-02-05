@@ -7,7 +7,7 @@ class DualCandleStickChart{
     public $candle1;
     public $candle2;
 
-    public $PATTERN;
+    public $pattern;
     
     public function __construct($candle1, $candle2){
         $this->candle1 = $candle1;
@@ -16,29 +16,29 @@ class DualCandleStickChart{
     }
 
     public function pattern(){
-        return $this->PATTERN;
+        return $this->pattern;
     }
 
     public function setPattern(){
 
         // BULLISH_KICKER
         if(
-            ($this->candle1->PATTERN=="MARUBOZU" && $this->candle1->color=="RED") &&
-            ($this->candle2->PATTERN=="MARUBOZU" && $this->candle2->color=="GREEN") &&
+            ($this->candle1->pattern=="MARUBOZU" && $this->candle1->color=="RED") &&
+            ($this->candle2->pattern=="MARUBOZU" && $this->candle2->color=="GREEN") &&
             ($this->candle1->o < $this->candle2->o) &&
             ($this->candle1->volume < $this->candle2->volume)
         ){
-            $this->PATTERN = "BULLISH_KICKER";
+            $this->pattern = "BULLISH_KICKER";
         }
 
         // BEARISH_KICKER
         if(
-            ($this->candle1->PATTERN=="MARUBOZU" && $this->candle1->color=="GREEN") &&
-            ($this->candle2->PATTERN=="MARUBOZU" && $this->candle2->color=="RED") &&
+            ($this->candle1->pattern=="MARUBOZU" && $this->candle1->color=="GREEN") &&
+            ($this->candle2->pattern=="MARUBOZU" && $this->candle2->color=="RED") &&
             ($this->candle1->o > $this->candle2->o) &&
             ($this->candle1->volume > $this->candle2->volume)
         ){
-            $this->PATTERN = "BULLISH_KICKER";
+            $this->pattern = "BULLISH_KICKER";
             
         }
 
@@ -50,7 +50,7 @@ class DualCandleStickChart{
             ($this->candle1->volume < $this->candle2->volume)
 
         ){
-            $this->PATTERN = "BULLISH_ENGULFING";
+            $this->pattern = "BULLISH_ENGULFING";
         }
 
         // BEARISH_ENGULFING
@@ -61,7 +61,7 @@ class DualCandleStickChart{
             ($this->candle1->volume > $this->candle2->volume)
 
         ){
-            $this->PATTERN = "BEARISH_ENGULFING";
+            $this->pattern = "BEARISH_ENGULFING";
         }
 
         // BULLISH_HARAMI
@@ -71,7 +71,7 @@ class DualCandleStickChart{
             ($this->candle1->c < $this->candle2->o)
 
         ){
-            $this->PATTERN = "BULLISH_HARAMI";
+            $this->pattern = "BULLISH_HARAMI";
         }
 
         // BEARISH_HARAMI
@@ -81,7 +81,7 @@ class DualCandleStickChart{
             ($this->candle1->c > $this->candle2->o)
 
         ){
-            $this->PATTERN = "BEARISH_HARAMI";
+            $this->pattern = "BEARISH_HARAMI";
         }
 
         // PIERCING_LINE
@@ -91,7 +91,7 @@ class DualCandleStickChart{
             ($this->candle1->o > $this->candle2->c) &&
             (($this->candle1->o + $this->candle1->c) / 2 < $this->candle2->c)
         ){
-            $this->PATTERN = "PIERCING_LINE";
+            $this->pattern = "PIERCING_LINE";
         }
 
         // DARK_CLOUD_COVER
@@ -101,7 +101,7 @@ class DualCandleStickChart{
             ($this->candle1->o < $this->candle2->c) &&
             (($this->candle1->o + $this->candle1->c) / 2 > $this->candle2->c)
         ){
-            $this->PATTERN = "DARK_CLOUD_COVER";
+            $this->pattern = "DARK_CLOUD_COVER";
         }
 
         // TWEEZER_BOTTOM
@@ -109,7 +109,7 @@ class DualCandleStickChart{
             ($this->candle1->color=="RED" && $this->candle2->color=="GREEN") &&
             ($this->candle1->c == $this->candle2->o)
         ){
-            $this->PATTERN = "TWEEZER_BOTTOM";
+            $this->pattern = "TWEEZER_BOTTOM";
         }
 
         // TWEEZER_TOP
@@ -117,7 +117,7 @@ class DualCandleStickChart{
             ($this->candle1->color=="GREEN" && $this->candle2->color=="RED") &&
             ($this->candle1->c == $this->candle2->o)
         ){
-            $this->PATTERN = "TWEEZER_TOP";
+            $this->pattern = "TWEEZER_TOP";
         }
     }
 

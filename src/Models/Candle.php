@@ -19,7 +19,7 @@ class Candle{
         public $lower_wick;
         public $wicks;
 
-        public $PATTERN;
+        public $pattern;
         
         public function __construct($params){
 
@@ -87,7 +87,7 @@ class Candle{
         }
 
         public function pattern(){
-            return $this->PATTERN;
+            return $this->pattern;
         }
 
         /* Getters */
@@ -120,11 +120,11 @@ class Candle{
 
         public function stats(){
  
-            if( $this->PATTERN == "MARUBOZU" ){
+            if( $this->pattern == "MARUBOZU" ){
 
                 echo "date : {$this->date}<br>";
                 echo "color : {$this->color}<br>";
-                echo "pattern : {$this->PATTERN}<br>";
+                echo "pattern : {$this->pattern}<br>";
                 echo "upper_wick : {$this->upper_wick}<br>";
                 echo "body : {$this->body}<br>";
                 echo "lower_wick : {$this->lower_wick}<br>";
@@ -136,12 +136,12 @@ class Candle{
 
             // DOJI : 20 * ABS(O - C) <= H - L
             if( (config('candlestick.DOJI_WICK_MULTIPLIER') * abs($this->o - $this->c)) <= ($this->h - $this->l) ){
-                $this->PATTERN = "DOJI";
+                $this->pattern = "DOJI";
             }
 
             // MARUBOZU : ABS(H - L) = ABS(O - C)
             if( $this->body == 100 ){
-                $this->PATTERN = "MARUBOZU";
+                $this->pattern = "MARUBOZU";
             }
 
             // CLOSING_MARUBOZU : (L = C OR C = H) AND H - L > ABS(O - C)
@@ -150,7 +150,7 @@ class Candle{
                 $this->h - $this->l > abs($this->o - $this->c) &&
                 $this->wicks < config('candlestick.MARUBOZU_WICKS_THRESHOLD')
             ){
-                $this->PATTERN = "CLOSING_MARUBOZU";
+                $this->pattern = "CLOSING_MARUBOZU";
             }
 
             // OPENING_MARUBOZU : (L = O OR O = H) AND H - L > ABS(O - C)
@@ -159,7 +159,7 @@ class Candle{
                 $this->h - $this->l > abs($this->o - $this->c) &&
                 $this->wicks < config('candlestick.MARUBOZU_WICKS_THRESHOLD')
             ){
-                $this->PATTERN = "OPENING_MARUBOZU";
+                $this->pattern = "OPENING_MARUBOZU";
             }
 
             // HAMMER_OR_HANGING_MAN
@@ -167,7 +167,7 @@ class Candle{
                 ($this->lower_wick > $this->body * config('candlestick.HAMMER_LONGER_WICK_MULTIPLIER')) && 
                 ($this->upper_wick < config('candlestick.HAMMER_SHORTER_WICK_THRESHOLD'))
             ){
-                $this->PATTERN = "HAMMER_OR_HANGING_MAN";
+                $this->pattern = "HAMMER_OR_HANGING_MAN";
             }
 
             // INVERTED_HAMMER_OR_SHOOTING_STAR
@@ -175,7 +175,7 @@ class Candle{
                 ($this->upper_wick > $this->body * config('candlestick.HAMMER_LONGER_WICK_MULTIPLIER')) && 
                 ($this->lower_wick < config('candlestick.HAMMER_SHORTER_WICK_THRESHOLD'))
             ){
-                $this->PATTERN = "INVERTED_HAMMER_OR_SHOOTING_STAR";
+                $this->pattern = "INVERTED_HAMMER_OR_SHOOTING_STAR";
             }
 
             // DRAGONFLY_DOJI
@@ -183,7 +183,7 @@ class Candle{
                 ($this->lower_wick > config('candlestick.DOJI_WICK_MULTIPLIER') * $this->body) && 
                 ($this->upper_wick < config('candlestick.DOJI_SHORTER_WICK_THRESHOLD'))
             ){
-                $this->PATTERN = "DRAGONFLY_DOJI";
+                $this->pattern = "DRAGONFLY_DOJI";
             }
 
             // GRAVESTONE_DOJI
@@ -191,7 +191,7 @@ class Candle{
                 ($this->upper_wick > config('candlestick.DOJI_WICK_MULTIPLIER') * $this->body) && 
                 ($this->lower_wick < config('candlestick.DOJI_SHORTER_WICK_THRESHOLD'))
             ){
-                $this->PATTERN = "GRAVESTONE_DOJI";
+                $this->pattern = "GRAVESTONE_DOJI";
             }
 
             // SPINNING_TOP
@@ -199,7 +199,7 @@ class Candle{
                 ($this->body * config('candlestick.SPINNING_TOP_WICKS_MULTIPLIER') < (100 - $this->body)) && 
                 abs($this->upper_wick - $this->lower_wick) < config('candlestick.SPINNING_TOP_WICKS_DIFFERENCE_THRESHOLD')
             ){
-                $this->PATTERN = "SPINNING_TOP";
+                $this->pattern = "SPINNING_TOP";
             }
 
 

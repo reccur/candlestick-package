@@ -5,6 +5,7 @@ namespace Reccur\Candlestick\Models;
 use Reccur\Candlestick\Models\Candle;
 use Reccur\Candlestick\Models\DualCandleStickChart;
 use Reccur\Candlestick\Models\TripleCandleStickChart;
+use Reccur\Candlestick\Models\QuatroCandleStickChart;
 
 class CandleStick{
 
@@ -26,6 +27,10 @@ class CandleStick{
 
     public function triple($candle1, $candle2, $candle3){
        return new TripleCandleStickChart($candle1, $candle2, $candle3);
+    }
+
+    public function quatro($candle1, $candle2, $candle3, $candle4){
+       return new QuatroCandleStickChart($candle1, $candle2, $candle3, $candle4);
     }
 
 }

@@ -8,7 +8,8 @@ class TripleCandleStickChart{
     public $candle2;
     public $candle3;
 
-    public $PATTERN;
+    public $pattern;
+    public $accuracy;
     
     public function __construct($candle1, $candle2, $candle3){
         $this->candle1 = $candle1;
@@ -18,7 +19,11 @@ class TripleCandleStickChart{
     }
 
     public function pattern(){
-        return $this->PATTERN;
+        return $this->pattern;
+    }
+
+    public function accuracy(){
+        return $this->accuracy;
     }
 
     public function setPattern(){
@@ -31,12 +36,12 @@ class TripleCandleStickChart{
             ($this->candle3->color=="GREEN") &&
             (($this->candle1->o + $this->candle1->c) / 2 < $this->candle3->c)
         ){
-            $this->PATTERN = "MORNING_STAR";
+            $this->pattern = "MORNING_STAR";
             if(
-                ($this->candle2->PATTERN=="DOJI") &&
+                ($this->candle2->pattern=="DOJI") &&
                 ($this->candle1->l > $this->candle2->h)
             ){
-                $this->PATTERN = "BULLISH_ABANDONED_BABY";
+                $this->pattern = "BULLISH_ABANDONED_BABY";
             }
             
         }
@@ -49,12 +54,12 @@ class TripleCandleStickChart{
             ($this->candle3->color=="RED") &&
             (($this->candle1->o + $this->candle1->c) / 2 > $this->candle3->c)
         ){
-            $this->PATTERN = "EVENING_STAR";
+            $this->pattern = "EVENING_STAR";
             if(
-                ($this->candle2->PATTERN=="DOJI") &&
+                ($this->candle2->pattern=="DOJI") &&
                 ($this->candle1->h < $this->candle2->l)
             ){
-                $this->PATTERN = "BEARISH_ABANDONED_BABY";
+                $this->pattern = "BEARISH_ABANDONED_BABY";
             }
         }
 
@@ -67,7 +72,7 @@ class TripleCandleStickChart{
             ($this->candle2->c > $this->candle3->o) && ($this->candle2->c > $this->candle3->o) &&
             ($this->candle3->c > $this->candle2->c)
         ){
-            $this->PATTERN = "THREE_WHITE_SOLDIERS";    
+            $this->pattern = "THREE_WHITE_SOLDIERS";    
         }
 
         // THREE_BLACK_CROWS
@@ -80,62 +85,62 @@ class TripleCandleStickChart{
             ($this->candle2->c < $this->candle3->o) && 
             ($this->candle3->c < $this->candle2->c)
         ){
-            $this->PATTERN = "THREE_BLACK_CROWS";    
+            $this->pattern = "THREE_BLACK_CROWS";    
         }
 
         // THREE_OUTSIDE_UP
         $dcscTOU = new DualCandleStickChart($this->candle1, $this->candle2);
         if(
-            ($dcscTOU->PATTERN=="BULLISH_ENGULFING") &&
+            ($dcscTOU->pattern=="BULLISH_ENGULFING") &&
             ($this->candle3->color=="GREEN") &&
             ($this->candle3->c > $this->candle2->c) &&
             ($this->candle2->volume < $this->candle3->volume)
         ){
-            $this->PATTERN = "THREE_OUTSIDE_UP";
+            $this->pattern = "THREE_OUTSIDE_UP";
         }
 
         // THREE_OUTSIDE_DOWN
         $dcscTOD = new DualCandleStickChart($this->candle1, $this->candle2);
         if(
-            ($dcscTOD->PATTERN=="BEARISH_ENGULFING") &&
+            ($dcscTOD->pattern=="BEARISH_ENGULFING") &&
             ($this->candle3->color=="RED") &&
             ($this->candle3->c < $this->candle2->c) &&
             ($this->candle2->volume > $this->candle3->volume)
         ){
-            $this->PATTERN = "THREE_OUTSIDE_DOWN";
+            $this->pattern = "THREE_OUTSIDE_DOWN";
         }
 
         // THREE_INSIDE_UP
         $dcscTOU = new DualCandleStickChart($this->candle1, $this->candle2);
         if(
-            ($dcscTOU->PATTERN=="BULLISH_HARAMI") &&
+            ($dcscTOU->pattern=="BULLISH_HARAMI") &&
             ($this->candle3->color=="GREEN") &&
             ($this->candle3->c > $this->candle2->c) &&
             ($this->candle2->volume < $this->candle3->volume)
         ){
-            $this->PATTERN = "THREE_INSIDE_UP";
+            $this->pattern = "THREE_INSIDE_UP";
         }
 
         // THREE_INSIDE_DOWN
         $dcscTOU = new DualCandleStickChart($this->candle1, $this->candle2);
         if(
-            ($dcscTOU->PATTERN=="BEARISH_HARAMI") &&
+            ($dcscTOU->pattern=="BEARISH_HARAMI") &&
             ($this->candle3->color=="RED") &&
             ($this->candle3->c < $this->candle2->c) &&
             ($this->candle2->volume > $this->candle3->volume)
         ){
-            $this->PATTERN = "THREE_INSIDE_DOWN";
+            $this->pattern = "THREE_INSIDE_DOWN";
         }
 
         // DARK_CLOUD_COVER_CONFIRMED
         $dcscDCCC = new DualCandleStickChart($this->candle1, $this->candle2);
         if(
-            ($dcscTOU->PATTERN=="DARK_CLOUD_COVER") &&
+            ($dcscTOU->pattern=="DARK_CLOUD_COVER") &&
             ($this->candle3->color=="RED") &&
             ($this->candle2->o > $this->candle3->o) &&
             ($this->candle2->volume > $this->candle3->volume)
         ){
-            $this->PATTERN = "DARK_CLOUD_COVER_CONFIRMED";
+            $this->pattern = "DARK_CLOUD_COVER_CONFIRMED";
         }
     }
 
