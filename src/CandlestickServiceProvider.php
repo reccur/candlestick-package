@@ -29,7 +29,7 @@ class CandlestickServiceProvider extends ServiceProvider{
     public function register()
     {
         $this->app->bind('candlestick', function($app){
-            return new Candlestick();
+            return new Models\Candlestick();
         });
     }
 }
