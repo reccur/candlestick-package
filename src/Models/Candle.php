@@ -23,12 +23,12 @@ class Candle{
         
         public function __construct($params){
 
-            $this->date = $params['date'] ?? '';
-            $this->o = $params['o'] ?? 0;
-            $this->h = $params['h'] ?? 0;
-            $this->l = $params['l'] ?? 0;
-            $this->c = $params['c'] ?? 0;
-            $this->volume = $params['volume'] ?? 0;
+            $this->date = (string) $params['date'] ?? '';
+            $this->o = (float) $params['o'] ?? 0;
+            $this->h = (float) $params['h'] ?? 0;
+            $this->l = (float) $params['l'] ?? 0;
+            $this->c = (float) $params['c'] ?? 0;
+            $this->volume = (float) $params['volume'] ?? 0;
 
             $this->setColor();
             $this->setStructure();
@@ -42,23 +42,23 @@ class Candle{
             return $this->date;
         }
 
-        public function o(){
+        public function o() : float{
             return $this->o;
         }
 
-        public function h(){
+        public function h() : float{
             return $this->h;
         }
 
-        public function l(){
+        public function l() : float{
             return $this->l;
         }
 
-        public function c(){
+        public function c() : float{
             return $this->c;
         }
 
-        public function volume(){
+        public function volume() : float{
             return $this->volume;
         }
 

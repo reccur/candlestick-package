@@ -5,9 +5,46 @@
 
 Candlestick is a laravel package that helps to analyze various patterns, structures and trends in candlesticks
 
+## Features
 - Use it with Facade or as a library
 - Change various thresholds and multipliers in config/candlestick.php file
 - Includes patterns for single candle, dual candles and triple candles
+
+## Detectable Patterns
+### Single Candle Patterns
+- DOJI
+- MARUBOZU
+- CLOSING_MARUBOZU
+- OPENING_MARUBOZU
+- HAMMER_OR_HANGING_MAN
+- INVERTED_HAMMER_OR_SHOOTING_STAR
+- DRAGONFLY_DOJI
+- GRAVESTONE_DOJI
+- SPINNING_TOP
+
+### Dual Candle Patterns
+- BULLISH_KICKER
+- BEARISH_KICKER
+- BULLISH_ENGULFING
+- BEARISH_ENGULFING
+- BULLISH_HARAMI
+- BEARISH_HARAMI
+- BEARISH_HARAMI
+- PIERCING_LINE
+- DARK_CLOUD_COVER
+- TWEEZER_BOTTOM
+- TWEEZER_TOP
+
+### Triple Candle Patterns
+- MORNING_STAR
+- EVENING_STAR
+- THREE_WHITE_SOLDIERS
+- THREE_BLACK_CROWS
+- THREE_OUTSIDE_UP
+- THREE_OUTSIDE_DOWN
+- THREE_INSIDE_UP
+- THREE_INSIDE_DOWN
+- DARK_CLOUD_COVER_CONFIRMED
 
 ## Installing Candlestick
 
