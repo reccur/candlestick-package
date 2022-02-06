@@ -49,12 +49,13 @@ class TripleCandleStickChart{
         // EVENING_STAR
         if(
             ($this->candle1->color=="GREEN") &&
-            ($this->candle1->c < max($this->candle2->o, $this->candle2->c)) &&
+            ($this->candle1->c < min($this->candle2->o, $this->candle2->c)) &&
             ($this->candle3->o < min($this->candle2->o, $this->candle2->c)) &&
             ($this->candle3->color=="RED") &&
             (($this->candle1->o + $this->candle1->c) / 2 > $this->candle3->c)
         ){
             $this->pattern = "EVENING_STAR";
+            $this->accuracy = "72";
             if(
                 ($this->candle2->pattern=="DOJI") &&
                 ($this->candle1->h < $this->candle2->l)
@@ -86,6 +87,7 @@ class TripleCandleStickChart{
             ($this->candle3->c < $this->candle2->c)
         ){
             $this->pattern = "THREE_BLACK_CROWS";    
+            $this->accuracy = "78";    
         }
 
         // THREE_OUTSIDE_UP
