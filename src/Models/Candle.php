@@ -120,19 +120,44 @@ class Candle{
         $lower_wick = $this->color=="GREEN"?($this->o - $this->l):($this->c - $this->l);
 
         $total_length = $upper_wick + $body + $lower_wick;
-
-        $this->candle = 100;
-        $this->upper_wick = round($upper_wick / $total_length * 100, 4);
-        $this->body = round($body / $total_length * 100, 4);
-        $this->lower_wick = round($lower_wick / $total_length * 100, 4);
-        $this->wicks = round(100 - $this->body, 4);
+        
+        if($total_length > 0){
+            $this->candle = 100;
+            $this->upper_wick = round($upper_wick / $total_length * 100, 4);
+            $this->body = round($body / $total_length * 100, 4);
+            $this->lower_wick = round($lower_wick / $total_length * 100, 4);
+            $this->wicks = round(100 - $this->body, 4);
+        }
+        
     }
 
     public function setPatterns(){
 
-        // DOJI : 20 * ABS(O - C) <= H - L
-        if( (config('candlestick.DOJI_WICK_MULTIPLIER') * abs($this->o - $this->c)) <= ($this->h - $this->l) ){
+        // SPINNING_TOP
+        if(
+            ($this->body < config('candlestick.SPINNING_TOP_BODY_THRESHOLD')) && 
+            abs($this->upper_wick - $this->lower_wick) < config('candlestick.SPINNING_TOP_WICKS_DIFFERENCE_THRESHOLD')
+        ){
+            $this->pattern_base = "SPINNING_TOP";
+            if($this->upper_wick == $this->lower_wick){
+                $this->pattern_specific = "CENTERED";
+            } else {
+                $this->pattern_specific = "OFFSET";
+            }
+        }
+
+        /* DOJI START */
+        // DOJI
+        if($this->body < config('candlestick.DOJI_BODY_THRESHOLD')){
             $this->pattern_base = "DOJI";
+            if(abs($this->upper_wick - $this->lower_wick) < 10){
+                $this->pattern_specific = "LONG_LEGGED";
+            }
+        }
+
+        // FOUR_PRICE
+        if($this->o == $this->h && $this->h == $this->l && $this->l == $this->c){
+            $this->pattern_specific = "FOUR_PRICE";
         }
 
         // DOJI_DRAGONFLY
@@ -150,7 +175,10 @@ class Candle{
         ){
             $this->pattern_specific = "GRAVESTONE";
         }
+        /* DOJI END */
 
+
+        /* MARUBOZU START */
         // MARUBOZU : Must be a long candle without any wicks
         if(
             ($this->body == 100) && 
@@ -179,16 +207,21 @@ class Candle{
             $this->pattern_base = "MARUBOZU";
             $this->pattern_specific = "OPENING";
         }
+        /* MARUBOZU END */
+
+        if($this->body > $this->upper_wick && $this->body > $this->lower_wick){
+            $this->pattern_base = "LONG";
+        }
 
         // HAMMER_OR_HANGING_MAN
         if(
-            ($this->lower_wick > config('candlestick.HANGING_MAN_LONGER_WICK_THRESHOLD')) && 
-            ($this->upper_wick < config('candlestick.HANGING_MAN_SHORTER_WICK_THRESHOLD'))
+            ($this->lower_wick > config('candlestick.HAMMER_OR_HANGING_MAN_LONGER_WICK_THRESHOLD')) && 
+            ($this->upper_wick < config('candlestick.HAMMER_OR_HANGING_MAN_SHORTER_WICK_THRESHOLD'))
         ){
-            $this->pattern_base = "HANGING_MAN";
+            $this->pattern_base = "HAMMER_OR_HANGING_MANHAMMER_OR_HANGING_MAN";
         }
 
-        // // INVERTED_HAMMER_OR_SHOOTING_STAR
+        // INVERTED_HAMMER_OR_SHOOTING_STAR
         if(
             ($this->upper_wick > config('candlestick.SHOOTING_STAR_LONGER_WICK_THRESHOLD')) && 
             ($this->lower_wick < config('candlestick.SHOOTING_STAR_LONGER_WICK_THRESHOLD'))
@@ -196,21 +229,6 @@ class Candle{
             $this->pattern_base = "SHOOTING_STAR";
         }
 
-        // SPINNING_TOP
-        if(
-            ($this->body < config('candlestick.SPINNING_TOP_BODY_THRESHOLD')) && 
-            abs($this->upper_wick - $this->lower_wick) < config('candlestick.SPINNING_TOP_WICKS_DIFFERENCE_THRESHOLD')
-        ){
-            $this->pattern_base = "SPINNING_TOP";
-            if($this->upper_wick == $this->lower_wick){
-                $this->pattern_specific = "CENTERED";
-            } else {
-                $this->pattern_specific = "OFFSET";
-            }
-        }
-
-
     }
-
 }
 ?>
