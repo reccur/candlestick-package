@@ -24,7 +24,7 @@ class Candle{
     public $lower_wick;
     public $wicks;
 
-    public $pattern_base;
+    public $pattern;
     public $pattern_specific;
     
     public function __construct($params){
@@ -92,8 +92,8 @@ class Candle{
         return $this->wicks;
     }
 
-    public function pattern_base(){
-        return $this->pattern_base;
+    public function pattern(){
+        return $this->pattern;
     }
 
     public function pattern_specific(){
@@ -138,7 +138,7 @@ class Candle{
             ($this->body < config('candlestick.SPINNING_TOP_BODY_THRESHOLD')) && 
             abs($this->upper_wick - $this->lower_wick) < config('candlestick.SPINNING_TOP_WICKS_DIFFERENCE_THRESHOLD')
         ){
-            $this->pattern_base = "SPINNING_TOP";
+            $this->pattern = "SPINNING_TOP";
             if($this->upper_wick == $this->lower_wick){
                 $this->pattern_specific = "CENTERED";
             } else {
@@ -149,7 +149,7 @@ class Candle{
         /* DOJI START */
         // DOJI
         if($this->body < config('candlestick.DOJI_BODY_THRESHOLD')){
-            $this->pattern_base = "DOJI";
+            $this->pattern = "DOJI";
             if(abs($this->upper_wick - $this->lower_wick) < 10){
                 $this->pattern_specific = "LONG_LEGGED";
             }
@@ -184,7 +184,7 @@ class Candle{
             ($this->body == 100) && 
             (config('candlestick.MARUBOZU_MULTIPLIER') * abs($this->o - $this->c) >= (($this->o + $this->c)) / 2)
         ){
-            $this->pattern_base = "MARUBOZU";
+            $this->pattern = "MARUBOZU";
             $this->pattern_specific = "FULL";
         }
 
@@ -194,7 +194,7 @@ class Candle{
             $this->h - $this->l > abs($this->o - $this->c) &&
             $this->wicks > 0
         ){
-            $this->pattern_base = "MARUBOZU";
+            $this->pattern = "MARUBOZU";
             $this->pattern_specific = "CLOSING";
         }
 
@@ -204,13 +204,13 @@ class Candle{
             $this->h - $this->l > abs($this->o - $this->c) &&
             $this->wicks > 0
         ){
-            $this->pattern_base = "MARUBOZU";
+            $this->pattern = "MARUBOZU";
             $this->pattern_specific = "OPENING";
         }
         /* MARUBOZU END */
 
         if($this->body > $this->upper_wick && $this->body > $this->lower_wick){
-            $this->pattern_base = "LONG";
+            $this->pattern = "LONG";
         }
 
         // HAMMER_OR_HANGING_MAN
@@ -218,7 +218,7 @@ class Candle{
             ($this->lower_wick > config('candlestick.HAMMER_OR_HANGING_MAN_LONGER_WICK_THRESHOLD')) && 
             ($this->upper_wick < config('candlestick.HAMMER_OR_HANGING_MAN_SHORTER_WICK_THRESHOLD'))
         ){
-            $this->pattern_base = "HAMMER_OR_HANGING_MANHAMMER_OR_HANGING_MAN";
+            $this->pattern = "HAMMER_OR_HANGING_MANHAMMER_OR_HANGING_MAN";
         }
 
         // INVERTED_HAMMER_OR_SHOOTING_STAR
@@ -226,7 +226,7 @@ class Candle{
             ($this->upper_wick > config('candlestick.SHOOTING_STAR_LONGER_WICK_THRESHOLD')) && 
             ($this->lower_wick < config('candlestick.SHOOTING_STAR_LONGER_WICK_THRESHOLD'))
         ){
-            $this->pattern_base = "SHOOTING_STAR";
+            $this->pattern = "SHOOTING_STAR";
         }
 
     }
